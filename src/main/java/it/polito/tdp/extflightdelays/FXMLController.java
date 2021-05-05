@@ -37,15 +37,17 @@ public class FXMLController {
     void doAnalizzaAeroporti(ActionEvent event) {
     	txtResult.clear();
     	String dmin = distanzaMinima.getText();
+    	int media;
     	try {
-    		int media = Integer.parseInt(dmin);
-    		model.creaGrafo(media);
-    		txtResult.appendText("Grafo creato con " + model.getnNodi() + " vertici e " + model.getnArchi() + " archi");
-    		txtResult.appendText("\n\nELENCO ROTTE:\n" + model.getVoliScelti());
+    		media = Integer.parseInt(dmin);
     	}
     	catch(NumberFormatException nfe) {
     		txtResult.appendText("Inserire un numero");
+    		return;
     	}
+    	model.creaGrafo(media);
+		txtResult.appendText("Grafo creato con " + model.getnNodi() + " vertici e " + model.getnArchi() + " archi");
+		txtResult.appendText("\n\nELENCO ROTTE:\n" + model.getVoliScelti());
     }
 
     @FXML // This method is called by the FXMLLoader when initialization is complete
